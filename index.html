@@ -1,0 +1,988 @@
+=<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Kashmala | Web Developer & AI Automation Specialist</title>
+
+    <meta name="description"
+        content="Kashmala is a Web Developer & AI Automation Specialist creating modern websites, landing pages, and practical AI-powered workflows.">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            background: #f7faf8;
+            color: #17221d;
+            line-height: 1.6;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1150px;
+            margin: auto;
+        }
+
+        /* NAVIGATION */
+
+        header {
+            background: rgba(247, 250, 248, 0.95);
+            border-bottom: 1px solid #e1e9e4;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        nav {
+            min-height: 75px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 30px;
+        }
+
+        .logo {
+            font-size: 25px;
+            font-weight: 800;
+            letter-spacing: -1px;
+            color: #145c3b;
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 30px;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: #52605a;
+            font-size: 14px;
+            font-weight: 600;
+            transition: 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: #145c3b;
+        }
+
+        .nav-contact {
+            background: #145c3b;
+            color: white !important;
+            padding: 11px 19px;
+            border-radius: 30px;
+        }
+
+        .nav-contact:hover {
+            background: #0d452c;
+        }
+
+        /* HERO */
+
+        .hero {
+            padding: 105px 0 95px;
+            background:
+                radial-gradient(circle at 85% 20%, rgba(37, 126, 82, 0.10), transparent 30%),
+                linear-gradient(180deg, #f7faf8 0%, #eef6f1 100%);
+        }
+
+        .hero-content {
+            max-width: 850px;
+        }
+
+        .eyebrow {
+            display: inline-block;
+            color: #145c3b;
+            background: #e0f0e7;
+            padding: 8px 15px;
+            border-radius: 30px;
+            font-size: 13px;
+            font-weight: 700;
+            margin-bottom: 22px;
+        }
+
+        .hero h1 {
+            font-size: clamp(45px, 7vw, 78px);
+            line-height: 1.02;
+            letter-spacing: -4px;
+            max-width: 850px;
+            margin-bottom: 25px;
+        }
+
+        .hero h1 span {
+            color: #18734a;
+        }
+
+        .hero p {
+            max-width: 680px;
+            font-size: 19px;
+            color: #5d6963;
+            margin-bottom: 35px;
+        }
+
+        .hero-buttons {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 14px;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 14px 24px;
+            border-radius: 8px;
+            font-size: 14px;
+            font-weight: 700;
+            transition: 0.3s ease;
+        }
+
+        .btn-primary {
+            background: #145c3b;
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background: #0d452c;
+            transform: translateY(-2px);
+        }
+
+        .btn-secondary {
+            border: 1px solid #cbd9d1;
+            background: white;
+            color: #214b37;
+        }
+
+        .btn-secondary:hover {
+            border-color: #145c3b;
+            transform: translateY(-2px);
+        }
+
+        /* GENERAL SECTIONS */
+
+        section {
+            padding: 95px 0;
+        }
+
+        .section-heading {
+            max-width: 650px;
+            margin-bottom: 50px;
+        }
+
+        .section-label {
+            color: #18734a;
+            font-size: 13px;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            margin-bottom: 12px;
+        }
+
+        .section-heading h2 {
+            font-size: clamp(32px, 5vw, 48px);
+            line-height: 1.1;
+            letter-spacing: -2px;
+            margin-bottom: 15px;
+        }
+
+        .section-heading p {
+            color: #65716b;
+            font-size: 16px;
+        }
+
+        /* ABOUT */
+
+        .about {
+            background: white;
+        }
+
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1fr 1.3fr;
+            gap: 70px;
+            align-items: center;
+        }
+
+        .about-card {
+            background: #edf6f0;
+            border: 1px solid #d9e9df;
+            border-radius: 20px;
+            padding: 40px;
+        }
+
+        .about-card .big-letter {
+            width: 90px;
+            height: 90px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: #145c3b;
+            color: white;
+            border-radius: 20px;
+            font-size: 42px;
+            font-weight: 800;
+            margin-bottom: 25px;
+        }
+
+        .about-card h3 {
+            font-size: 25px;
+            margin-bottom: 8px;
+        }
+
+        .about-card p {
+            color: #68746e;
+        }
+
+        .about-text p {
+            color: #5f6c65;
+            margin-bottom: 18px;
+            font-size: 17px;
+        }
+
+        /* SERVICES */
+
+        .services {
+            background: #f7faf8;
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 22px;
+        }
+
+        .service-card {
+            background: white;
+            border: 1px solid #dfe9e3;
+            border-radius: 18px;
+            padding: 34px;
+            min-height: 300px;
+            transition: 0.3s ease;
+        }
+
+        .service-card:hover {
+            transform: translateY(-6px);
+            border-color: #a9cdb9;
+            box-shadow: 0 18px 45px rgba(20, 92, 59, 0.08);
+        }
+
+        .service-number {
+            color: #18734a;
+            font-size: 13px;
+            font-weight: 800;
+            margin-bottom: 45px;
+        }
+
+        .service-card h3 {
+            font-size: 23px;
+            margin-bottom: 14px;
+        }
+
+        .service-card p {
+            color: #66726c;
+            font-size: 15px;
+        }
+
+        /* SKILLS */
+
+        .skills {
+            background: white;
+        }
+
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 16px;
+        }
+
+        .skill {
+            padding: 23px;
+            border: 1px solid #dfe8e2;
+            border-radius: 13px;
+            background: #fbfdfb;
+            font-weight: 700;
+            color: #28513d;
+        }
+
+        .skill span {
+            display: block;
+            font-size: 12px;
+            color: #829088;
+            font-weight: 500;
+            margin-top: 5px;
+        }
+
+        /* PROJECTS */
+
+        .projects {
+            background: #f7faf8;
+        }
+
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 22px;
+        }
+
+        .project-card {
+            background: white;
+            border: 1px solid #dfe9e3;
+            border-radius: 18px;
+            overflow: hidden;
+            transition: 0.3s ease;
+        }
+
+        .project-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 18px 45px rgba(20, 92, 59, 0.08);
+        }
+
+        .project-visual {
+            height: 190px;
+            background: linear-gradient(135deg, #dceee4, #eef6f1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #145c3b;
+            font-size: 18px;
+            font-weight: 800;
+        }
+
+        .project-info {
+            padding: 27px;
+        }
+
+        .project-info h3 {
+            font-size: 21px;
+            margin-bottom: 9px;
+        }
+
+        .project-info p {
+            color: #69756f;
+            font-size: 14px;
+            margin-bottom: 18px;
+        }
+
+        .project-tag {
+            display: inline-block;
+            background: #e7f2eb;
+            color: #216544;
+            padding: 6px 10px;
+            border-radius: 20px;
+            font-size: 11px;
+            font-weight: 700;
+        }
+
+        /* PROCESS */
+
+        .process {
+            background: white;
+        }
+
+        .process-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 22px;
+        }
+
+        .process-step {
+            padding: 30px;
+            border-left: 3px solid #18734a;
+            background: #f7faf8;
+        }
+
+        .process-step small {
+            color: #18734a;
+            font-weight: 800;
+        }
+
+        .process-step h3 {
+            margin: 10px 0;
+            font-size: 21px;
+        }
+
+        .process-step p {
+            color: #69756f;
+            font-size: 14px;
+        }
+
+        /* CONTACT */
+
+        .contact {
+            background: #123e2a;
+            color: white;
+        }
+
+        .contact-inner {
+            display: grid;
+            grid-template-columns: 1.4fr 0.8fr;
+            gap: 70px;
+            align-items: center;
+        }
+
+        .contact h2 {
+            font-size: clamp(36px, 5vw, 56px);
+            line-height: 1.05;
+            letter-spacing: -2px;
+            margin-bottom: 20px;
+        }
+
+        .contact p {
+            color: #c8d8cf;
+            max-width: 600px;
+            font-size: 17px;
+        }
+
+        .contact-box {
+            background: rgba(255, 255, 255, 0.08);
+            border: 1px solid rgba(255, 255, 255, 0.14);
+            padding: 30px;
+            border-radius: 16px;
+        }
+
+        .contact-box small {
+            color: #b9cec2;
+            display: block;
+            margin-bottom: 8px;
+        }
+
+        .email-link {
+            font-size: 17px;
+            font-weight: 700;
+            word-break: break-word;
+        }
+
+        .email-link:hover {
+            text-decoration: underline;
+        }
+
+        /* FOOTER */
+
+        footer {
+            background: #0c2d1f;
+            color: #aebfb5;
+            padding: 25px 0;
+        }
+
+        .footer-inner {
+            display: flex;
+            justify-content: space-between;
+            gap: 20px;
+            align-items: center;
+        }
+
+        .footer-name {
+            color: white;
+            font-weight: 800;
+        }
+
+        footer p {
+            font-size: 13px;
+        }
+
+        /* RESPONSIVE */
+
+        @media (max-width: 850px) {
+
+            .nav-links {
+                gap: 14px;
+            }
+
+            .nav-links a {
+                font-size: 12px;
+            }
+
+            .about-grid,
+            .contact-inner {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+
+            .services-grid,
+            .projects-grid,
+            .process-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .skills-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .contact-box {
+                max-width: 500px;
+            }
+        }
+
+        @media (max-width: 600px) {
+
+            .container {
+                width: 88%;
+            }
+
+            nav {
+                min-height: 70px;
+                flex-direction: column;
+                justify-content: center;
+                gap: 12px;
+                padding: 15px 0;
+            }
+
+            .nav-links {
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+
+            .nav-contact {
+                padding: 7px 12px;
+            }
+
+            .hero {
+                padding: 75px 0;
+            }
+
+            .hero h1 {
+                letter-spacing: -2px;
+            }
+
+            .hero p {
+                font-size: 16px;
+            }
+
+            section {
+                padding: 70px 0;
+            }
+
+            .skills-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .about-card {
+                padding: 28px;
+            }
+
+            .footer-inner {
+                flex-direction: column;
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- NAVIGATION -->
+
+    <header>
+        <div class="container">
+            <nav>
+                <a href="#home" class="logo">Kashmala.</a>
+
+                <ul class="nav-links">
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#services">Services</a></li>
+                    <li><a href="#skills">Skills</a></li>
+                    <li><a href="#projects">Work</a></li>
+                    <li>
+                        <a href="#contact" class="nav-contact">Let's Talk</a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+
+    <!-- HERO -->
+
+    <main>
+
+        <section class="hero" id="home">
+            <div class="container">
+                <div class="hero-content">
+
+                    <div class="eyebrow">
+                        Web Development · AI Automation
+                    </div>
+
+                    <h1>
+                        Building digital experiences
+                        <span>that work.</span>
+                    </h1>
+
+                    <p>
+                        I'm Kashmala, a Web Developer & AI Automation Specialist
+                        focused on creating modern websites, effective landing
+                        pages, and practical AI-powered workflows.
+                    </p>
+
+                    <div class="hero-buttons">
+                        <a href="#services" class="btn btn-primary">
+                            Explore Services
+                        </a>
+
+                        <a href="#projects" class="btn btn-secondary">
+                            View My Work
+                        </a>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+
+        <!-- ABOUT -->
+
+        <section class="about" id="about">
+            <div class="container">
+
+                <div class="section-heading">
+                    <div class="section-label">About Me</div>
+                    <h2>Simple ideas. Thoughtful digital solutions.</h2>
+                </div>
+
+                <div class="about-grid">
+
+                    <div class="about-card">
+                        <div class="big-letter">K</div>
+                        <h3>Kashmala</h3>
+                        <p>
+                            Web Developer & AI Automation Specialist
+                        </p>
+                    </div>
+
+                    <div class="about-text">
+                        <p>
+                            I build clean, responsive, and user-focused digital
+                            experiences for businesses and individuals who want
+                            a professional online presence.
+                        </p>
+
+                        <p>
+                            My work combines modern web development with
+                            practical AI automation to help turn ideas into
+                            useful digital solutions.
+                        </p>
+
+                        <p>
+                            I focus on clear communication, thoughtful design,
+                            and solutions that are built with purpose.
+                        </p>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+
+        <!-- SERVICES -->
+
+        <section class="services" id="services">
+            <div class="container">
+
+                <div class="section-heading">
+                    <div class="section-label">Services</div>
+                    <h2>What I can build for you.</h2>
+                    <p>
+                        Professional digital solutions designed around your
+                        goals, audience, and workflow.
+                    </p>
+                </div>
+
+                <div class="services-grid">
+
+                    <article class="service-card">
+                        <div class="service-number">01 / SERVICE</div>
+
+                        <h3>Website Development</h3>
+
+                        <p>
+                            Modern, responsive websites designed to give
+                            businesses and personal brands a strong and
+                            professional online presence.
+                        </p>
+                    </article>
+
+
+                    <article class="service-card">
+                        <div class="service-number">02 / SERVICE</div>
+
+                        <h3>Landing Page Development</h3>
+
+                        <p>
+                            Focused landing pages with clear structure,
+                            strong visual hierarchy, and calls-to-action
+                            designed around a specific goal.
+                        </p>
+                    </article>
+
+
+                    <article class="service-card">
+                        <div class="service-number">03 / SERVICE</div>
+
+                        <h3>AI Automation</h3>
+
+                        <p>
+                            Practical AI-powered workflows that can reduce
+                            repetitive tasks, organize information, and
+                            improve everyday business processes.
+                        </p>
+                    </article>
+
+                </div>
+            </div>
+        </section>
+
+
+        <!-- SKILLS -->
+
+        <section class="skills" id="skills">
+            <div class="container">
+
+                <div class="section-heading">
+                    <div class="section-label">Skills</div>
+                    <h2>Tools and capabilities.</h2>
+                    <p>
+                        A growing technical foundation focused on useful,
+                        professional digital solutions.
+                    </p>
+                </div>
+
+                <div class="skills-grid">
+
+                    <div class="skill">
+                        HTML & CSS
+                        <span>Modern page structure & styling</span>
+                    </div>
+
+                    <div class="skill">
+                        JavaScript
+                        <span>Interactive web experiences</span>
+                    </div>
+
+                    <div class="skill">
+                        Responsive Design
+                        <span>Desktop, tablet & mobile layouts</span>
+                    </div>
+
+                    <div class="skill">
+                        AI Automation
+                        <span>Practical AI-powered workflows</span>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+
+        <!-- PROJECTS -->
+
+        <section class="projects" id="projects">
+            <div class="container">
+
+                <div class="section-heading">
+                    <div class="section-label">Selected Work</div>
+                    <h2>Projects built to demonstrate what I do.</h2>
+                    <p>
+                        A selection of portfolio concepts demonstrating
+                        website development, landing pages, and automation.
+                    </p>
+                </div>
+
+                <div class="projects-grid">
+
+                    <article class="project-card">
+
+                        <div class="project-visual">
+                            Business Website
+                        </div>
+
+                        <div class="project-info">
+                            <h3>Modern Business Website</h3>
+
+                            <p>
+                                A clean and responsive website concept
+                                designed for a modern service-based business.
+                            </p>
+
+                            <span class="project-tag">
+                                Website Development
+                            </span>
+                        </div>
+
+                    </article>
+
+
+                    <article class="project-card">
+
+                        <div class="project-visual">
+                            Landing Page
+                        </div>
+
+                        <div class="project-info">
+                            <h3>Conversion-Focused Landing Page</h3>
+
+                            <p>
+                                A focused landing page concept built around
+                                clear messaging, structure, and user action.
+                            </p>
+
+                            <span class="project-tag">
+                                Landing Page
+                            </span>
+                        </div>
+
+                    </article>
+
+
+                    <article class="project-card">
+
+                        <div class="project-visual">
+                            AI Workflow
+                        </div>
+
+                        <div class="project-info">
+                            <h3>AI Automation Concept</h3>
+
+                            <p>
+                                A workflow concept showing how repetitive
+                                business tasks can be organized with AI.
+                            </p>
+
+                            <span class="project-tag">
+                                AI Automation
+                            </span>
+                        </div>
+
+                    </article>
+
+                </div>
+            </div>
+        </section>
+
+
+        <!-- PROCESS -->
+
+        <section class="process">
+            <div class="container">
+
+                <div class="section-heading">
+                    <div class="section-label">My Process</div>
+                    <h2>From idea to finished solution.</h2>
+                </div>
+
+                <div class="process-grid">
+
+                    <div class="process-step">
+                        <small>STEP 01</small>
+                        <h3>Understand</h3>
+                        <p>
+                            Understand the goal, audience, requirements,
+                            and purpose of the project.
+                        </p>
+                    </div>
+
+                    <div class="process-step">
+                        <small>STEP 02</small>
+                        <h3>Build</h3>
+                        <p>
+                            Turn the idea into a clean, responsive, and
+                            functional digital solution.
+                        </p>
+                    </div>
+
+                    <div class="process-step">
+                        <small>STEP 03</small>
+                        <h3>Refine</h3>
+                        <p>
+                            Review the details, improve the experience,
+                            and prepare the final result.
+                        </p>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+
+        <!-- CONTACT -->
+
+        <section class="contact" id="contact">
+            <div class="container">
+
+                <div class="contact-inner">
+
+                    <div>
+                        <div class="section-label">
+                            Get In Touch
+                        </div>
+
+                        <h2>
+                            Have a project in mind?
+                            Let's build it.
+                        </h2>
+
+                        <p>
+                            Tell me what you're looking to create and
+                            let's discuss how I can help turn your idea
+                            into a practical digital solution.
+                        </p>
+                    </div>
+
+                    <div class="contact-box">
+
+                        <small>Email</small>
+
+                        <!-- Replace the email below with your professional
+                             business email when you're ready. -->
+
+                        <a
+                            href="mailto:your-business-email@example.com"
+                            class="email-link"
+                        >
+                            your-business-email@example.com
+                        </a>
+
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+
+    <!-- FOOTER -->
+
+    <footer>
+        <div class="container">
+
+            <div class="footer-inner">
+
+                <p>
+                    <span class="footer-name">Kashmala.</span>
+                    Web Developer & AI Automation Specialist
+                </p>
+
+                <p>
+                    © 2026 Kashmala. All rights reserved.
+                </p>
+
+            </div>
+
+        </div>
+    </footer>
+
+</body>
+</html>
