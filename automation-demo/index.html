@@ -1,0 +1,1251 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>FlowPilot — Intelligent Automation</title>
+
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@500;600;700&display=swap');
+
+    :root {
+      --navy: #0d1726;
+      --navy-soft: #142238;
+      --gold: #c9a96a;
+      --gold-light: #e2ca99;
+      --ivory: #f7f3eb;
+      --white: #ffffff;
+      --muted: #9ba7b7;
+      --line: rgba(255, 255, 255, 0.1);
+      --dark-text: #182333;
+      --soft-bg: #eee9df;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: "DM Sans", sans-serif;
+      background: var(--navy);
+      color: var(--white);
+      line-height: 1.6;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    button,
+    input,
+    select {
+      font: inherit;
+    }
+
+    .container {
+      width: min(1120px, calc(100% - 40px));
+      margin: auto;
+    }
+
+    /* HEADER */
+
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      background: rgba(13, 23, 38, 0.94);
+      backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--line);
+    }
+
+    .nav {
+      min-height: 76px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 30px;
+    }
+
+    .logo {
+      font-size: 21px;
+      font-weight: 700;
+      letter-spacing: -0.5px;
+    }
+
+    .logo span {
+      color: var(--gold);
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 30px;
+      list-style: none;
+      color: #c4ccd7;
+      font-size: 14px;
+    }
+
+    .nav-links a {
+      transition: color 0.25s ease;
+    }
+
+    .nav-links a:hover {
+      color: var(--gold-light);
+    }
+
+    .nav-cta {
+      border: 1px solid var(--gold);
+      padding: 10px 17px;
+      border-radius: 4px;
+      color: var(--gold-light);
+    }
+
+    .nav-cta:hover {
+      background: var(--gold);
+      color: var(--navy);
+    }
+
+    /* HERO */
+
+    .hero {
+      min-height: 720px;
+      display: flex;
+      align-items: center;
+      position: relative;
+      overflow: hidden;
+      background:
+        radial-gradient(circle at 78% 35%, rgba(201, 169, 106, 0.13), transparent 30%),
+        var(--navy);
+    }
+
+    .hero::before {
+      content: "";
+      position: absolute;
+      width: 500px;
+      height: 500px;
+      border: 1px solid rgba(201, 169, 106, 0.1);
+      border-radius: 50%;
+      right: -180px;
+      top: 100px;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1fr 0.9fr;
+      gap: 70px;
+      align-items: center;
+      position: relative;
+      z-index: 1;
+    }
+
+    .eyebrow {
+      color: var(--gold-light);
+      text-transform: uppercase;
+      letter-spacing: 2.5px;
+      font-size: 11px;
+      font-weight: 700;
+      margin-bottom: 22px;
+    }
+
+    h1 {
+      font-family: "Playfair Display", serif;
+      font-size: clamp(48px, 6vw, 76px);
+      line-height: 1.04;
+      font-weight: 600;
+      letter-spacing: -2px;
+      max-width: 680px;
+    }
+
+    h1 span {
+      color: var(--gold-light);
+    }
+
+    .hero-text {
+      color: var(--muted);
+      max-width: 570px;
+      font-size: 17px;
+      margin: 26px 0 34px;
+    }
+
+    .buttons {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 13px;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 48px;
+      padding: 0 22px;
+      border-radius: 4px;
+      font-size: 14px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: 0.25s ease;
+    }
+
+    .btn-gold {
+      background: var(--gold);
+      color: var(--navy);
+      border: 1px solid var(--gold);
+    }
+
+    .btn-gold:hover {
+      background: var(--gold-light);
+      border-color: var(--gold-light);
+      transform: translateY(-2px);
+    }
+
+    .btn-outline {
+      border: 1px solid rgba(255,255,255,0.22);
+      color: white;
+      background: transparent;
+    }
+
+    .btn-outline:hover {
+      border-color: var(--gold);
+      color: var(--gold-light);
+    }
+
+    /* AUTOMATION VISUAL */
+
+    .automation-card {
+      background: rgba(255,255,255,0.045);
+      border: 1px solid rgba(255,255,255,0.11);
+      border-radius: 12px;
+      padding: 24px;
+      box-shadow: 0 30px 80px rgba(0,0,0,0.28);
+    }
+
+    .card-top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 24px;
+    }
+
+    .card-title {
+      font-size: 14px;
+      font-weight: 700;
+    }
+
+    .status {
+      display: flex;
+      align-items: center;
+      gap: 7px;
+      color: #cdd8ce;
+      font-size: 11px;
+    }
+
+    .status-dot {
+      width: 7px;
+      height: 7px;
+      background: #8fc59d;
+      border-radius: 50%;
+      box-shadow: 0 0 12px rgba(143,197,157,0.6);
+    }
+
+    .flow {
+      display: grid;
+      gap: 10px;
+    }
+
+    .flow-step {
+      display: grid;
+      grid-template-columns: 40px 1fr auto;
+      align-items: center;
+      gap: 13px;
+      padding: 15px;
+      border: 1px solid rgba(255,255,255,0.09);
+      border-radius: 7px;
+      background: rgba(255,255,255,0.025);
+    }
+
+    .step-icon {
+      width: 38px;
+      height: 38px;
+      display: grid;
+      place-items: center;
+      border-radius: 7px;
+      background: rgba(201,169,106,0.12);
+      color: var(--gold-light);
+      font-size: 16px;
+      font-weight: 700;
+    }
+
+    .flow-step strong {
+      display: block;
+      font-size: 13px;
+      margin-bottom: 2px;
+    }
+
+    .flow-step small {
+      color: var(--muted);
+      font-size: 10px;
+    }
+
+    .flow-arrow {
+      color: var(--gold);
+      font-size: 13px;
+    }
+
+    /* SECTIONS */
+
+    section {
+      padding: 110px 0;
+    }
+
+    .section-light {
+      background: var(--ivory);
+      color: var(--dark-text);
+    }
+
+    .section-dark {
+      background: var(--navy);
+    }
+
+    .section-heading {
+      max-width: 680px;
+      margin-bottom: 55px;
+    }
+
+    .section-heading .eyebrow {
+      margin-bottom: 14px;
+    }
+
+    .section-heading h2 {
+      font-family: "Playfair Display", serif;
+      font-size: clamp(36px, 5vw, 56px);
+      line-height: 1.08;
+      font-weight: 600;
+    }
+
+    .section-heading p {
+      margin-top: 18px;
+      color: #687384;
+      max-width: 580px;
+    }
+
+    .section-dark .section-heading p {
+      color: var(--muted);
+    }
+
+    /* SERVICES */
+
+    .service-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 18px;
+    }
+
+    .service-card {
+      border: 1px solid #ddd7ca;
+      padding: 30px;
+      background: #fbf9f4;
+      min-height: 250px;
+      transition: 0.3s ease;
+    }
+
+    .service-card:hover {
+      transform: translateY(-5px);
+      border-color: var(--gold);
+      box-shadow: 0 15px 35px rgba(32, 35, 40, 0.08);
+    }
+
+    .service-number {
+      color: var(--gold);
+      font-weight: 700;
+      font-size: 12px;
+      letter-spacing: 1px;
+    }
+
+    .service-card h3 {
+      margin: 40px 0 12px;
+      font-size: 21px;
+    }
+
+    .service-card p {
+      color: #687384;
+      font-size: 14px;
+    }
+
+    /* PROCESS */
+
+    .process {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 0;
+      border-top: 1px solid var(--line);
+      border-bottom: 1px solid var(--line);
+    }
+
+    .process-item {
+      padding: 35px 25px;
+      border-right: 1px solid var(--line);
+    }
+
+    .process-item:last-child {
+      border-right: 0;
+    }
+
+    .process-number {
+      color: var(--gold);
+      font-size: 12px;
+      font-weight: 700;
+    }
+
+    .process-item h3 {
+      margin: 30px 0 10px;
+      font-size: 17px;
+    }
+
+    .process-item p {
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    /* DASHBOARD */
+
+    .dashboard {
+      display: grid;
+      grid-template-columns: 220px 1fr;
+      border: 1px solid rgba(255,255,255,0.1);
+      background: #111e30;
+      border-radius: 10px;
+      overflow: hidden;
+    }
+
+    .dashboard-sidebar {
+      padding: 25px;
+      border-right: 1px solid var(--line);
+    }
+
+    .side-brand {
+      font-weight: 700;
+      margin-bottom: 35px;
+    }
+
+    .side-brand span {
+      color: var(--gold);
+    }
+
+    .side-link {
+      display: block;
+      padding: 11px 0;
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    .side-link.active {
+      color: var(--gold-light);
+    }
+
+    .dashboard-main {
+      padding: 28px;
+    }
+
+    .dashboard-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 25px;
+    }
+
+    .dashboard-header h3 {
+      font-size: 18px;
+    }
+
+    .date {
+      color: var(--muted);
+      font-size: 11px;
+    }
+
+    .metric-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+      margin-bottom: 18px;
+    }
+
+    .metric {
+      padding: 18px;
+      background: rgba(255,255,255,0.035);
+      border: 1px solid var(--line);
+      border-radius: 7px;
+    }
+
+    .metric span {
+      color: var(--muted);
+      font-size: 10px;
+    }
+
+    .metric strong {
+      display: block;
+      font-size: 27px;
+      margin-top: 7px;
+      color: var(--gold-light);
+    }
+
+    .activity {
+      border: 1px solid var(--line);
+      border-radius: 7px;
+      overflow: hidden;
+    }
+
+    .activity-title {
+      padding: 16px;
+      border-bottom: 1px solid var(--line);
+      font-size: 12px;
+      font-weight: 700;
+    }
+
+    .activity-row {
+      display: flex;
+      justify-content: space-between;
+      padding: 15px 16px;
+      border-bottom: 1px solid var(--line);
+      color: #c5ced9;
+      font-size: 12px;
+    }
+
+    .activity-row:last-child {
+      border-bottom: 0;
+    }
+
+    .activity-row span {
+      color: var(--muted);
+      font-size: 10px;
+    }
+
+    /* BENEFITS */
+
+    .benefit-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+    }
+
+    .benefit-card {
+      padding: 35px;
+      border: 1px solid rgba(255,255,255,0.1);
+      background: rgba(255,255,255,0.025);
+    }
+
+    .benefit-card h3 {
+      font-family: "Playfair Display", serif;
+      font-size: 28px;
+      margin-bottom: 12px;
+    }
+
+    .benefit-card p {
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    /* TESTIMONIAL */
+
+    .quote {
+      max-width: 850px;
+      margin: auto;
+      text-align: center;
+    }
+
+    .quote-mark {
+      color: var(--gold);
+      font-family: "Playfair Display", serif;
+      font-size: 70px;
+      line-height: 0.7;
+    }
+
+    .quote p {
+      font-family: "Playfair Display", serif;
+      font-size: clamp(26px, 4vw, 42px);
+      line-height: 1.25;
+      margin: 25px 0;
+    }
+
+    .quote small {
+      color: var(--muted);
+    }
+
+    /* CTA */
+
+    .cta {
+      background:
+        linear-gradient(rgba(13,23,38,0.95), rgba(13,23,38,0.95)),
+        var(--navy);
+      text-align: center;
+      border-top: 1px solid var(--line);
+    }
+
+    .cta h2 {
+      font-family: "Playfair Display", serif;
+      font-size: clamp(38px, 5vw, 60px);
+      max-width: 700px;
+      margin: auto;
+      line-height: 1.1;
+    }
+
+    .cta p {
+      color: var(--muted);
+      max-width: 550px;
+      margin: 20px auto 30px;
+    }
+
+    /* FOOTER */
+
+    footer {
+      border-top: 1px solid var(--line);
+      padding: 30px 0;
+      background: var(--navy);
+    }
+
+    .footer-inner {
+      display: flex;
+      justify-content: space-between;
+      gap: 20px;
+      color: var(--muted);
+      font-size: 12px;
+    }
+
+    .footer-logo {
+      color: white;
+      font-weight: 700;
+    }
+
+    .footer-logo span {
+      color: var(--gold);
+    }
+
+    /* MODAL */
+
+    .modal {
+      position: fixed;
+      inset: 0;
+      background: rgba(5,10,17,0.75);
+      display: none;
+      place-items: center;
+      z-index: 2000;
+      padding: 20px;
+    }
+
+    .modal.show {
+      display: grid;
+    }
+
+    .modal-box {
+      background: var(--ivory);
+      color: var(--dark-text);
+      width: min(470px, 100%);
+      padding: 38px;
+      border-radius: 8px;
+      text-align: center;
+    }
+
+    .modal-box h3 {
+      font-family: "Playfair Display", serif;
+      font-size: 31px;
+      margin-bottom: 10px;
+    }
+
+    .modal-box p {
+      color: #687384;
+      font-size: 14px;
+      margin-bottom: 25px;
+    }
+
+    /* RESPONSIVE */
+
+    @media (max-width: 900px) {
+      .nav-links {
+        display: none;
+      }
+
+      .hero {
+        min-height: auto;
+        padding: 90px 0;
+      }
+
+      .hero-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .service-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .process {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .process-item:nth-child(2) {
+        border-right: 0;
+      }
+
+      .process-item:nth-child(-n+2) {
+        border-bottom: 1px solid var(--line);
+      }
+
+      .dashboard {
+        grid-template-columns: 1fr;
+      }
+
+      .dashboard-sidebar {
+        display: none;
+      }
+    }
+
+    @media (max-width: 600px) {
+      .container {
+        width: min(100% - 28px, 1120px);
+      }
+
+      section {
+        padding: 80px 0;
+      }
+
+      h1 {
+        font-size: 47px;
+      }
+
+      .service-grid,
+      .benefit-grid,
+      .metric-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .process {
+        grid-template-columns: 1fr;
+      }
+
+      .process-item {
+        border-right: 0;
+        border-bottom: 1px solid var(--line);
+      }
+
+      .process-item:last-child {
+        border-bottom: 0;
+      }
+
+      .dashboard-main {
+        padding: 18px;
+      }
+
+      .flow-step {
+        grid-template-columns: 35px 1fr;
+      }
+
+      .flow-arrow {
+        display: none;
+      }
+
+      .footer-inner {
+        flex-direction: column;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- HEADER -->
+  <header>
+    <div class="container nav">
+      <a href="#home" class="logo">Flow<span>Pilot</span></a>
+
+      <ul class="nav-links">
+        <li><a href="#solutions">Solutions</a></li>
+        <li><a href="#process">How it works</a></li>
+        <li><a href="#dashboard">Platform</a></li>
+        <li><a href="#benefits">Benefits</a></li>
+        <li><a href="#contact" class="nav-cta">Get started</a></li>
+      </ul>
+    </div>
+  </header>
+
+
+  <!-- HERO -->
+  <main id="home">
+
+    <section class="hero">
+      <div class="container hero-grid">
+
+        <div>
+          <div class="eyebrow">Intelligent business automation</div>
+
+          <h1>
+            Let your workflow
+            <span>work for you.</span>
+          </h1>
+
+          <p class="hero-text">
+            FlowPilot connects your everyday tools, automates repetitive work,
+            and helps your team turn incoming opportunities into organized action.
+          </p>
+
+          <div class="buttons">
+            <a href="#contact" class="btn btn-gold">Build your workflow</a>
+            <a href="#solutions" class="btn btn-outline">Explore solutions</a>
+          </div>
+        </div>
+
+        <div class="automation-card">
+
+          <div class="card-top">
+            <div class="card-title">Lead Follow-up Workflow</div>
+
+            <div class="status">
+              <span class="status-dot"></span>
+              Active
+            </div>
+          </div>
+
+          <div class="flow">
+
+            <div class="flow-step">
+              <div class="step-icon">01</div>
+              <div>
+                <strong>New lead detected</strong>
+                <small>Website form submitted</small>
+              </div>
+              <div class="flow-arrow">→</div>
+            </div>
+
+            <div class="flow-step">
+              <div class="step-icon">02</div>
+              <div>
+                <strong>Lead enriched</strong>
+                <small>Company information organized</small>
+              </div>
+              <div class="flow-arrow">→</div>
+            </div>
+
+            <div class="flow-step">
+              <div class="step-icon">03</div>
+              <div>
+                <strong>Personalized response</strong>
+                <small>AI prepares follow-up</small>
+              </div>
+              <div class="flow-arrow">→</div>
+            </div>
+
+            <div class="flow-step">
+              <div class="step-icon">04</div>
+              <div>
+                <strong>Team notified</strong>
+                <small>Opportunity added to pipeline</small>
+              </div>
+              <div class="flow-arrow">✓</div>
+            </div>
+
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+
+    <!-- SOLUTIONS -->
+    <section class="section-light" id="solutions">
+
+      <div class="container">
+
+        <div class="section-heading">
+          <div class="eyebrow">Automation solutions</div>
+
+          <h2>
+            Replace repetitive work with intelligent workflows.
+          </h2>
+
+          <p>
+            FlowPilot is a fictional automation platform concept created
+            as a portfolio demonstration.
+          </p>
+        </div>
+
+        <div class="service-grid">
+
+          <article class="service-card">
+            <div class="service-number">01</div>
+            <h3>Lead Automation</h3>
+            <p>
+              Capture new leads, organize information, and trigger timely
+              follow-up workflows automatically.
+            </p>
+          </article>
+
+          <article class="service-card">
+            <div class="service-number">02</div>
+            <h3>Data Workflows</h3>
+            <p>
+              Move information between your everyday business tools without
+              repetitive copy-and-paste tasks.
+            </p>
+          </article>
+
+          <article class="service-card">
+            <div class="service-number">03</div>
+            <h3>AI Assistants</h3>
+            <p>
+              Create intelligent workflows that summarize information,
+              classify requests, and prepare useful responses.
+            </p>
+          </article>
+
+          <article class="service-card">
+            <div class="service-number">04</div>
+            <h3>Client Onboarding</h3>
+            <p>
+              Turn new client forms into organized tasks, records,
+              notifications, and follow-up steps.
+            </p>
+          </article>
+
+          <article class="service-card">
+            <div class="service-number">05</div>
+            <h3>Reporting</h3>
+            <p>
+              Collect activity from connected systems and transform it
+              into clear recurring reports.
+            </p>
+          </article>
+
+          <article class="service-card">
+            <div class="service-number">06</div>
+            <h3>Custom Workflows</h3>
+            <p>
+              Design automation around the exact repetitive process
+              a growing business needs to simplify.
+            </p>
+          </article>
+
+        </div>
+
+      </div>
+    </section>
+
+
+    <!-- PROCESS -->
+    <section class="section-dark" id="process">
+
+      <div class="container">
+
+        <div class="section-heading">
+          <div class="eyebrow">How it works</div>
+
+          <h2>
+            From repetitive task to automated system.
+          </h2>
+
+          <p>
+            A simple four-stage process for designing useful business automation.
+          </p>
+        </div>
+
+        <div class="process">
+
+          <div class="process-item">
+            <div class="process-number">01</div>
+            <h3>Discover</h3>
+            <p>
+              Identify repetitive tasks, bottlenecks, and opportunities
+              where automation can save time.
+            </p>
+          </div>
+
+          <div class="process-item">
+            <div class="process-number">02</div>
+            <h3>Design</h3>
+            <p>
+              Map the workflow and define what should happen at every
+              stage of the process.
+            </p>
+          </div>
+
+          <div class="process-item">
+            <div class="process-number">03</div>
+            <h3>Automate</h3>
+            <p>
+              Connect the tools and build the triggers, actions,
+              conditions, and AI steps.
+            </p>
+          </div>
+
+          <div class="process-item">
+            <div class="process-number">04</div>
+            <h3>Improve</h3>
+            <p>
+              Monitor the workflow and refine it as the business
+              process evolves.
+            </p>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+
+    <!-- PLATFORM DASHBOARD -->
+    <section class="section-dark" id="dashboard">
+
+      <div class="container">
+
+        <div class="section-heading">
+          <div class="eyebrow">Inside the platform</div>
+
+          <h2>
+            One place to understand your automated operations.
+          </h2>
+
+          <p>
+            A fictional dashboard designed to demonstrate how an automation
+            product could present workflow activity.
+          </p>
+        </div>
+
+        <div class="dashboard">
+
+          <aside class="dashboard-sidebar">
+            <div class="side-brand">Flow<span>Pilot</span></div>
+
+            <div class="side-link active">Overview</div>
+            <div class="side-link">Automations</div>
+            <div class="side-link">Leads</div>
+            <div class="side-link">Integrations</div>
+            <div class="side-link">Activity</div>
+          </aside>
+
+          <div class="dashboard-main">
+
+            <div class="dashboard-header">
+              <h3>Automation overview</h3>
+              <div class="date">September 2026</div>
+            </div>
+
+            <div class="metric-grid">
+
+              <div class="metric">
+                <span>Active workflows</span>
+                <strong>24</strong>
+              </div>
+
+              <div class="metric">
+                <span>Tasks automated</span>
+                <strong>1,284</strong>
+              </div>
+
+              <div class="metric">
+                <span>Connected tools</span>
+                <strong>12</strong>
+              </div>
+
+            </div>
+
+            <div class="activity">
+
+              <div class="activity-title">
+                Recent automation activity
+              </div>
+
+              <div class="activity-row">
+                <div>New lead routed to sales</div>
+                <span>2 min ago</span>
+              </div>
+
+              <div class="activity-row">
+                <div>Weekly report prepared</div>
+                <span>18 min ago</span>
+              </div>
+
+              <div class="activity-row">
+                <div>Client record updated</div>
+                <span>31 min ago</span>
+              </div>
+
+              <div class="activity-row">
+                <div>AI summary generated</div>
+                <span>46 min ago</span>
+              </div>
+
+            </div>
+
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+
+    <!-- BENEFITS -->
+    <section class="section-dark" id="benefits">
+
+      <div class="container">
+
+        <div class="section-heading">
+          <div class="eyebrow">Why automation</div>
+
+          <h2>
+            Build systems that give your team room to focus.
+          </h2>
+        </div>
+
+        <div class="benefit-grid">
+
+          <article class="benefit-card">
+            <h3>Less busywork.</h3>
+            <p>
+              Automate repetitive actions so people can spend more time
+              on decisions, relationships, and creative work.
+            </p>
+          </article>
+
+          <article class="benefit-card">
+            <h3>More consistency.</h3>
+            <p>
+              Turn scattered manual processes into structured workflows
+              that run the same way every time.
+            </p>
+          </article>
+
+          <article class="benefit-card">
+            <h3>Faster response.</h3>
+            <p>
+              Trigger the right action when an event happens instead
+              of waiting for someone to notice it manually.
+            </p>
+          </article>
+
+          <article class="benefit-card">
+            <h3>Smarter operations.</h3>
+            <p>
+              Combine automation with AI to organize information
+              and support everyday business decisions.
+            </p>
+          </article>
+
+        </div>
+
+      </div>
+    </section>
+
+
+    <!-- TESTIMONIAL -->
+    <section class="section-dark">
+
+      <div class="container">
+
+        <div class="quote">
+          <div class="quote-mark">“</div>
+
+          <p>
+            The best automation is the work your team no longer
+            has to think about.
+          </p>
+
+          <small>Portfolio demonstration · Fictional FlowPilot concept</small>
+        </div>
+
+      </div>
+    </section>
+
+
+    <!-- CTA -->
+    <section class="cta" id="contact">
+
+      <div class="container">
+
+        <div class="eyebrow">Start building smarter</div>
+
+        <h2>
+          Make your workflow work harder.
+        </h2>
+
+        <p>
+          Explore how thoughtful automation can turn repetitive processes
+          into reliable systems.
+        </p>
+
+        <button class="btn btn-gold" id="startButton">
+          Explore FlowPilot
+        </button>
+
+      </div>
+    </section>
+
+  </main>
+
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="container footer-inner">
+
+      <div class="footer-logo">
+        Flow<span>Pilot</span>
+      </div>
+
+      <div>
+        Fictional product concept · Portfolio demonstration
+      </div>
+
+      <div>
+        © 2026 FlowPilot
+      </div>
+
+    </div>
+  </footer>
+
+
+  <!-- MODAL -->
+  <div class="modal" id="modal">
+
+    <div class="modal-box">
+
+      <h3>Workflow exploration started.</h3>
+
+      <p>
+        This interaction is part of the FlowPilot portfolio demonstration.
+        No real automation has been activated.
+      </p>
+
+      <button class="btn btn-gold" id="closeModal">
+        Close
+      </button>
+
+    </div>
+
+  </div>
+
+
+  <script>
+    const startButton = document.getElementById("startButton");
+    const modal = document.getElementById("modal");
+    const closeModal = document.getElementById("closeModal");
+
+    startButton.addEventListener("click", () => {
+      modal.classList.add("show");
+    });
+
+    closeModal.addEventListener("click", () => {
+      modal.classList.remove("show");
+    });
+
+    modal.addEventListener("click", (event) => {
+      if (event.target === modal) {
+        modal.classList.remove("show");
+      }
+    });
+  </script>
+
+</body>
+</html>
